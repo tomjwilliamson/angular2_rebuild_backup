@@ -1,0 +1,136 @@
+.alert-stack {
+  position: fixed;
+  top: $spacing16;
+  left: $spacing16;
+  right: $spacing16;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 500px;
+}
+
+.alert {
+  margin-bottom: $spacing16;
+  padding: $spacing16;
+  color: white;
+  border: none;
+  overflow: hidden;
+  clear: both;
+  animation-duration: 1s;
+
+  a,
+  .close { color: white; }
+
+  > .icon {
+    margin-right: $spacing16 / 2;
+  }
+}
+
+.close {
+  margin-left: $spacing16;
+  opacity: .7;
+  text-shadow: none;
+  transition: $transition-default;
+
+  &:hover,
+  &:focus {
+    opacity: 1;
+  }
+}
+
+.alert-info {
+  background-color: $gray-darker;
+  box-shadow: 0 3px 0 transparentize($gray-darker, 0.7);
+}
+
+.alert-danger {
+  background-color: $brand-danger;
+  box-shadow: 0 3px 0 transparentize($brand-danger, 0.7);
+}
+
+.alert-success {
+  background-color: $brand-success;
+}
+
+.modal {
+  display: block;
+
+  &-dialog {
+    width: auto;
+    max-width: 500px;
+    margin: $spacing16 $spacing16 0 $spacing16;
+
+    @media (min-width: 533px) {
+      margin: 50vh auto 0 auto;
+      transform: translateY(-50%);
+    }
+  }
+
+  &-content {
+    border: none;
+    border-radius: $border-radius-base;
+    box-shadow: none;
+  }
+
+  &-header {
+    border-bottom: none;
+    border-top-left-radius: $border-radius-base - 1;
+    border-top-right-radius: $border-radius-base - 1;
+
+    .close { margin-top: 0; }
+  }
+
+  &-body { min-height: 150px; }
+
+  &-footer {
+    border-top: none;
+
+    .btn { margin-top: $spacing12; }
+  }
+
+  &-title { padding-right: 40px; }
+
+  &-backdrop { opacity: .6; }
+}
+
+.modal--info {
+
+  .modal-header { background-color: $brand-primary-light; }
+}
+
+.modal--danger {
+
+  .modal-header {
+    background-color: $brand-danger;
+    color: white;
+  }
+
+  .close { color: white; }
+}
+
+.modal--component {
+
+  .modal-header {
+    padding-bottom: 0;
+
+    @media (min-width: 533px) {
+      padding-top: $spacing16 * 3;
+      padding-left: $spacing16 * 3;
+      padding-right: $spacing16 * 3;
+    }
+  }
+
+  .modal-body {
+
+    @media (min-width: 533px) {
+      padding-left: $spacing16 * 3;
+      padding-right: $spacing16 * 3;
+      padding-bottom: $spacing16 * 3;
+    }
+  }
+
+  .close {
+    position: absolute;
+    top: $spacing12 * 2;
+    right: $spacing12 * 2;
+  }
+}

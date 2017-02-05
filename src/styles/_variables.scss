@@ -1,0 +1,113 @@
+// Variables
+// --------------------------------------------------
+
+
+$transition-default: all .2s ease;
+
+//== Colors
+//
+$brand-primary:									#009BDF !default;
+$brand-primary-light:						#E6F5FB;
+$brand-primary-lighter:         #F4FCFF;
+$brand-accent: 									#F1C40E;
+$brand-success:									#42CB70 !default;
+$brand-success-lighter:         #D9F5E2;
+$brand-danger:									#E74C3C !default;
+
+$gray-darker:                   #25353B !default;
+$gray-dark: 										#36464C !default;
+$gray:													#55656B !default;
+$gray-light:										#798A91 !default;
+$gray-lighter:                  #E4E9EB;
+$gray-lightest:                 #A2B2B8;
+$white:                         #ffffff;
+
+$text-muted: 										$gray !default;
+$text-danger:										$brand-danger !default;
+
+
+//== Spacing
+//
+
+$line-height-base:              1.5 !default;
+
+$spacing16: 										16px;
+$spacing12: 										12px;
+
+$border-radius-base:						3px !default;
+
+
+//== Grid system
+//
+
+//** Padding between columns. Gets divided in half for the left and right.
+$grid-gutter-width:             $spacing16 * 2 !default;
+
+
+//== Panels
+//
+$panel-body-padding:          	0 !default;
+$panel-heading-padding:       	0 !default;
+$panel-border-radius:						0 !default;
+
+
+//== Nabar
+//
+$navbar-border-radius:					0 !default;
+
+
+//== Buttons
+//
+$btn-primary-border:             #006D9C !default;
+$btn-danger-border:              #C0392A !default;
+
+
+//== Container sizes
+//
+//## Define the maximum width of `.container` for different screen sizes.
+
+// Small screen / tablet
+$container-tablet:             736px !default;
+
+// Medium screen / desktop
+$container-desktop:            $container-tablet !default;
+
+// Large screen / wide desktop
+$container-large-desktop:      $container-tablet !default;
+
+
+//== Labels
+//
+$label-info-bg:                 $brand-primary-light !default;
+$label-color:                   $gray-light !default;
+
+
+//** `.form-group` margin
+$form-group-margin-bottom:       $spacing16 !default;
+
+//== Form states and alerts
+//
+//## Define colors for form feedback states and, by default, alerts.
+
+$state-success-text:             $brand-success !default;
+
+$state-info-text:                $brand-primary !default;
+
+$state-warning-text:             $brand-accent !default;
+
+$state-danger-text:              $brand-danger !default;
+
+
+
+//== Modals
+//
+//##
+
+//** Padding applied to the modal body
+$modal-inner-padding:         $spacing16 !default;
+
+//** Padding applied to the modal title
+$modal-title-padding:         $spacing16 !default;
+
+//** Modal backdrop background color
+$modal-backdrop-bg:           $gray-dark !default;

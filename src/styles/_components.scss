@@ -1,0 +1,357 @@
+%process-visual-template {
+  content: '';
+  position: absolute;
+  width: 2px;
+  top: 2px;
+  border-right: 2px dotted $gray-lightest;
+}
+
+
+.booking-item {
+	margin-top: $spacing12 * 2;
+  margin-bottom: $spacing12 * 2;
+	padding-left: $spacing12;
+	border-left-width: 2px;
+	border-left-style: solid;
+
+	&--complete { border-left-color: $brand-primary; }
+
+	&--incomplete { border-left-color: $brand-danger; }
+
+  .panel-heading & {
+    padding-left: 0;
+    margin-bottom: 0;
+    border-left: none;
+  }
+
+	h3 {
+		margin-top: 3px;
+		margin-bottom: 3px;
+	}
+
+	h5 {
+		margin-bottom: 0;
+		line-height: 1.4;
+	}
+}
+
+.booking-item--complete .booking-status {
+  margin-top: $spacing16;
+
+	&:before {
+		content: '';
+		display: inline-block;
+		width: 12px;
+		height: 12px;
+		border-radius: 12px;
+	}
+
+	&--green:before { background-color: $brand-success; }
+
+  &--red:before { background-color: $brand-danger; }
+}
+
+.luggage {
+
+	p:first-child { margin-right: $spacing12 * 4; }
+
+	.icon { margin-right: $spacing12 / 2; }
+}
+
+
+.journey-process {
+  position: relative;
+  margin-top: $spacing12 * 2;
+  color: $gray-light;
+
+  .list-group-item {
+  	padding: 0 0 $spacing16 50px;
+  	border: none;
+
+    // dotted line for each step excluding last
+    &:not(:last-child):before {
+      @extend %process-visual-template;
+    
+      bottom: 0;
+      left: 12px;
+    }
+
+    &:first-child:before { top: 10px; }
+  }
+
+  .row-action-primary {
+    position: absolute;
+    background-color: white;
+    margin-top: 5px;
+    margin-left: -49px;
+
+    i { display: block; }
+  }
+
+  .label { margin-bottom: $spacing16 / 2; }
+
+  strong { color: $gray-dark; }
+}
+
+// if both luggage types, adjust positioning
+.journey-process--mixed {
+
+	.list-group-item {
+
+    &:not(:last-child):before {
+      left: 6px;
+    }
+
+    &:first-child:after {
+      @extend %process-visual-template;
+      top: 30px;
+      bottom: 0;
+      left: 18px;
+    }
+	}
+
+	.list-group-item:nth-child(2) .row-action-primary { margin-left: -42px; }
+	.list-group-item:nth-child(3) .row-action-primary { margin-left: -56px; }
+}
+
+
+.edit-block {
+	position: relative;
+	padding-right: 42px;
+
+	&__action {
+		position: absolute;
+  	right: 0;
+  	top: 50%;
+  	transform: translateY(-50%);
+  	text-decoration: underline;
+	}
+}
+
+.flight-visual {
+  position: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    background-color: $gray-lighter;
+    width: 100%;
+    height: 1px;
+  }
+
+  h2 {
+    position: relative;
+    background-color: white;
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 80px;
+
+    &.pull-left { padding-right: $spacing12; }
+
+    &.pull-right { padding-left: $spacing12; }
+  }
+
+  .icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -18px;
+    margin-left: -18px;
+    font-size: 36px;
+  }
+}
+  
+.flight-visual__city {
+  position: absolute;
+  font-size: $body-text-size;
+  font-weight: $weight-normal;
+  color: $gray;
+  line-height: 1;
+  white-space: nowrap;
+
+  .pull-left & {
+    top: 0;
+    left: 0;
+  }
+
+  .pull-right & {
+    bottom: 0;
+    right: 0;
+  }
+}
+
+.promo-codes {
+  padding-left: 0;
+  list-style-type: none;
+
+  .link { margin-left: $spacing12 / 2;}
+}
+
+.booking-summary {
+
+  @media (max-width: $screen-xs-max) {
+
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0;
+
+    .scroll-content {
+      position: relative;
+    }
+
+    &__micro {
+      background-color: $brand-primary-lighter;
+      padding: $spacing12 $spacing16;
+      border-top: 2px solid $brand-primary-light;
+
+      h6 { line-height: 24px; }
+    }
+
+    .summary-mid {
+      overflow-y: auto;
+      transition: $transition-default;
+
+      .panel {
+        display: block;
+        background-color: white;
+        padding: $spacing16;
+        margin-bottom: 0;
+      }
+    }
+
+    &.is-closed {
+      
+      .modal-backdrop {
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s .3s, opacity .3s;
+      }
+
+      .summary-mid { max-height: 0; }
+    }
+
+    &.is-open {
+
+      .modal-backdrop {
+        visibility: visible;
+        opacity: .6;
+        transition: $transition-default;
+      }
+
+      .summary-mid { max-height: calc(100vh - 50px); }
+    }
+  }
+
+  @media (min-width: $screen-sm-min) {
+    
+    .modal-backdrop { display: none; }
+  }
+}
+
+.progressbar {
+  background-color: $brand-success-lighter;
+  height: $spacing16 / 2;
+  margin-bottom: $spacing16 / 2;
+  border-radius: $spacing16 / 2;
+  overflow: hidden;
+
+  &:before {
+    content: '';
+    display: block;
+    background-color: $brand-success;
+    height: 100%;
+    border-radius: $spacing16 / 2;
+
+    @extend .fadeInRight;
+  }
+
+  // progress-bar fill for each status
+  $steps: 7;
+
+  @for $i from 1 through $steps {
+    &--status-#{$i}:before {
+      width: 100% / $steps * $i;
+      animation-duration: ($i * .4s) + .3s !important;
+      animation-delay: .4s;
+    }
+  }
+}
+
+.track-booking .panel-body {
+  @media (max-width: $screen-xs-max) {
+    margin-bottom: 0;
+  }
+
+  @media (min-width: $screen-sm-min) {
+    margin-bottom: $spacing16 * 10;
+  }
+}
+
+.track-bags {
+
+  .media {
+    background-color: $brand-primary-lighter;
+    border-radius: $spacing16 / 2;
+    overflow: hidden;
+  }
+
+  .media-left { padding-right: $spacing16; }
+
+  .media-body { padding: $spacing12 $spacing12 $spacing12 0; }
+
+  img { width: 180px; }
+}
+
+#google-map {
+  width: 100%;
+  height: 300px;
+  border-radius: $spacing16 / 2;
+}
+
+.password-rules {
+  padding-left: 0;
+  list-style-type: none;
+
+  li {
+    position: relative;
+    width: 50%;
+    padding: $spacing12 / 2 0 $spacing12 / 2 $spacing16;
+    color: $gray-light;
+    font-size: $caption;
+
+    &:before {
+      content: '';
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      left: 0;
+      top: 50%;
+      margin-top: -3px;
+      background-color: $gray-light;
+      border-radius: 8px;
+    }
+  }
+}
+
+.modal-signup {
+  // background: url('../images/bg-images/signup_bg.png') center top no-repeat;
+  background-size: 240px;
+  padding-top: 54px;
+  margin-bottom: 0;
+
+  .well {
+    padding: $spacing16;
+    margin-bottom: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+
+    @media (min-width: 533px) {
+      padding-left: $spacing16 * 3;
+      padding-right: $spacing16 * 3;
+    }
+  }
+}

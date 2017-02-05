@@ -1,0 +1,23 @@
+// Z-indexes
+
+.modal-backdrop { z-index: 10; }
+
+.modal { z-index: 20; }
+
+.modal-dialog { z-index: 20; }
+
+.alert-stack { z-index: 30; }
+
+.overlay-blue { z-index: 50; }
+
+
+@media (max-width: $screen-xs-max) {
+
+  .navbar { z-index: 10; }
+
+  .booking-summary.is-open {
+    z-index: 40; 
+
+    .scroll-content { z-index: 20; }
+  }
+}

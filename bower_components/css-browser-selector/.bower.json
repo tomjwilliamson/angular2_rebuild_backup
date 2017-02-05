@@ -1,0 +1,13 @@
+{
+  "name": "css-browser-selector",
+  "homepage": "https://github.com/Simek/css_browser_selector",
+  "_release": "658337c184",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "658337c18423616b1111c386f5d3db973217f8fc"
+  },
+  "_source": "https://github.com/Simek/css_browser_selector.git",
+  "_target": "*",
+  "_originalSource": "css-browser-selector"
+}

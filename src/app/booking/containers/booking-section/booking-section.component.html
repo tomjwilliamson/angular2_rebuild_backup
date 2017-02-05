@@ -1,0 +1,58 @@
+<div class="panel panel-default">
+  <div class="panel-heading clearfix">
+    <div class="container">
+      <h2>Your flight</h2>
+      <p class="text-muted">Enter your flight details</p>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8">
+          <!-- used to output booking panels -->
+          <router-outlet></router-outlet>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="margin-bottom-32">
+            <h4 class="margin-top-0">Need a little help?</h4>
+            <p>Here are the ways you can get in touch with us.</p>
+
+            <ul class="side-nav__list">
+              <li>
+                <a href="tel:+442033846677"><i class="icon">phone</i>+44 203 384 6677</a>
+              </li>
+              <li>
+                <a class="hidden-xs" href="javascript:void(0)" live-chat><i class="icon">message</i>Chat with us</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- used to output overview panels -->
+          <!--<app-overview></app-overview>-->
+
+          <!--<div class="booking-summary is-closed" mobile-summary ng-hide="vm.currentPanel.panel === 'flying-soon'">
+
+            <div class="modal-backdrop"></div>
+
+            <div class="scroll-content">
+              <div class="booking-summary__micro toggle-drawer-btn" ng-if="vm.device === 'mobile'">
+                <i class="icon pull-right" ng-show="!drawerOpen">arrow_up</i>
+                <i class="icon pull-right" ng-show="drawerOpen">carrow_down</i>
+                <strong class="pull-right" ng-show="vm.price.totalPrice.majorAmount">£{- vm.price.totalPrice.majorAmount -}</strong>
+                <h6 class="margin-top-0">My trip</h6>
+                
+                <div ng-show="!drawerOpen"></div>
+                
+                <div ng-show="drawerOpen"></div>
+              </div>
+
+              <div class="summary-mid fadeInUp" ng-include="vm.overviewPanel"></div>
+
+            </div>
+          </div>-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,98 @@
+<article class="panel panel-default">
+
+  <!--<h4 class="text-red" ng-show="$ctrl.showFlightErrorText">{- $ctrl.flightErrorText -}</h4>-->
+
+  <div class="loader-container" *ngIf="showFlightLoader">
+    <div class="loader">
+      <svg class="circular" viewBox="25 25 50 50">
+        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+      </svg>
+    </div>
+  </div>
+
+  <div *ngIf="showDestinationSelection || flightCount > 0">
+    
+    <h4 class="margin-top-0">Please confirm your flight</h4>
+    <p>Your flight seems to have more than one stop. Please select the one shown on your reservation.</p>
+
+    <div class="form-group with-select">
+      <select 
+        class="form-control" 
+        id="destinationSelect" 
+        name="destinationSelect" 
+        [ngModel]="flightData[dataLength]?.flightStatusDetails" 
+        (ngModelChange)="confirmFlightDestination($event)">
+
+        <option *ngFor="let item of flightStops; let i = index" [value]="i">
+          {{ item.arrivalAirport.airportCityName }} ({{ item.arrivalAirport.airportCode }})
+        </option>
+        
+      </select>
+      <label class="control-label" for="destinationSelect">Final destination</label>
+    </div>
+  </div>
+
+  <div *ngIf="!showFlightLoader && !showFlightErrorText && !showDestinationSelection">
+    <div class="flight-visual clearfix">
+      <h2 class="pull-left">
+        <span class="flight-visual__city">
+          {{ flightData[dataLength]?.flightStatusDetails[0].departureAirport.airportCityName }}
+        </span>
+          {{ flightData[dataLength]?.flightStatusDetails[0].departureAirport.airportCode }}
+      </h2>
+      <i class="icon">plane_solid</i>
+      <h2 class="pull-right">
+        <span class="flight-visual__city">
+          {{ flightData[dataLength]?.flightStatusDetails[flightCount].arrivalAirport.airportCityName }}
+        </span>
+        {{ flightData[dataLength]?.flightStatusDetails[flightCount].arrivalAirport.airportCode }}
+      </h2>
+    </div>
+  </div>
+
+ <div *ngIf="!showFlightLoader && !showFlightErrorText && !showDestinationSelection">
+
+    <div class="row">
+      <div class="col-xs-6">
+        <span class="text-gray-light">Date</span><br>
+        <h5 class="margin-bottom-24">{{ flightData[dataLength]?.flightStatusDetails[0].departureDateTimeDetails.scheduledDateTimeLocal | date:'EEE, d MMM y' }}</h5>
+      </div>
+      <div class="col-xs-6">
+        <span class="text-gray-light">Flight number</span><br>
+        <h5 class="margin-bottom-24">BA{{ flightData[dataLength]?.flightStatusDetails[0].flightNumber }}</h5>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-6">
+        <span class="text-gray-light">Departure time</span><br>
+        <h5>{{ flightData[dataLength]?.flightStatusDetails[0].departureDateTimeDetails.scheduledDateTimeLocal | date:'hh:mm' }}</h5>
+      </div>
+      <div class="col-xs-6">
+        <span class="text-gray-light">Terminal</span><br>
+        <h5>{{ flightData[dataLength]?.flightStatusDetails[0].departureAirport.airportTerminal }}</h5>
+      </div>
+    </div>
+
+    <button class="btn btn-link btn-lg link" *ngIf="" (click)="setArrivalAirport()">
+      Not your final destination?
+    </button>
+
+    <div class="margin-top-16" *ngIf="">
+      <a class="link pull-right" (click)="removeArrivalAirport()" href="javascript:void(0)"><i class="icon">bin</i>Remove</a>
+      <span class="text-gray-light">Connecting to</span><br>
+      <h5>{{ finalDestination.airportCityName }} <span *ngIf="">({{ finalDestination.airportCode }})</span></h5>
+    </div>
+
+  </div>
+
+  <hr>
+
+  <button id="flightDetails-submit" type="button" class="btn btn-accent btn-lg xs-full-width pull-right" (click)="goForward()">
+    Confirm
+  </button>
+  <button class="btn btn-link btn-lg link xs-full-width" (click)="goBack($event)">
+    Not my flight
+  </button>
+
+</article>

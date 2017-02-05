@@ -1,0 +1,162 @@
+<article class="panel panel-default">
+  <form #formBagPickupLocation="ngForm" id="inputAddress" name="formBagPickupLocation" (submit)="handleSubmit($event)" *ngIf="!showManualLocation" novalidate>
+
+    <div class="form-group">
+      <app-location-places-lookup 
+        (locationSet) = "getChildLocation($event)">
+      </app-location-places-lookup>
+    </div>
+    
+    <p class="help-block text-danger" *ngIf="!postcodeInZone">Sorry, we do not currently service your location. Please email <a class="link" href="mailto:support@airportr.com">support@airportr.com</a> for a custom quote.</p>
+    <p class="help-block text-danger" *ngIf="!postcodeEntered">Please enter an address with a postcode</p>
+    <p class="help-block text-danger" *ngIf="!addressFound">Address not found. Please search by post code</p>
+    <p class="help-block text-danger" *ngIf="showUserIdError">You seemed to have been logged out. Please log in and continue your booking</p>
+
+    <div class="clearfix">
+      <button id="collection-back" type="button" class="btn btn-back btn-lg pull-left" *ngIf="isNewBooking !== 'amend'">
+        <i class="icon">chevron_small_left</i>
+        Go back
+      </button>
+      <button id="add-passenger-back" type="button" class="btn btn-back btn-lg pull-left" *ngIf="isNewBooking === 'amend'">
+        <i class="icon">chevron_small_left</i>Cancel
+      </button>
+      <button id="formBagPickupLocation-submit" type="submit"[disabled]="!postcodesLoaded || !locationLoaded" class="btn btn-accent btn-lg pull-right">
+        <div class="loader-container-btn" *ngIf="showLocationLoader">
+          <div class="loader loader--gray">
+            <svg class="circular" viewBox="25 25 50 50">
+              <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+            </svg>
+          </div>
+        </div>
+        Find my address
+      </button>
+    </div>
+  </form>
+
+  <form #formBagPickupLocationEdit="ngForm" id="confirmAddress" name="formBagPickupLocationEdit" (submit)="handleSubmitLocationManual(formBagPickupLocationEdit.value, formBagPickupLocationEdit.valid, $event)" *ngIf="showManualLocation" novalidate>
+
+    <div class="form-group" (class)="{ 'has-error' : formBagPickupLocationEdit.collectionAddressName.invalid && formBagPickupLocationEdit.collectionAddressName.dirty }">
+      <input class="form-control show-error-init" 
+             id="collectionAddressName" 
+             name="collectionAddressName" 
+             [ngModel]="locationData.location.name"
+             required 
+             type="text">
+      <label class="control-label" for="collectionAddressName">House/Flat number/name</label>
+    </div>
+    <!--<p class="help-block text-danger" *ngIf="formBagPickupLocationEdit.collectionAddressName.invalid">Please enter your address name</p>-->
+
+    <div class="form-group" (class)="{ 'has-error' : formBagPickupLocationEdit.collectionAddressLine1.invalid && formBagPickupLocationEdit.collectionAddressLine1.dirty }">
+      <input class="form-control show-error-init" 
+             id="collectionAddressLine1" 
+             name="collectionAddressLine1" 
+             [ngModel]="locationData.location.addressLine1"
+             required
+             type="text">
+      <label class="control-label" for="collectionAddressLine1">Address line 1</label>
+    </div>
+    <!--<p class="help-block text-danger" *ngIf="formBagPickupLocationEdit.collectionAddressLine1.invalid">Please enter your address line 1</p>-->
+
+    <div class="form-group" (class)="{ 'has-error' : formBagPickupLocationEdit.collectionAddressLine2.invalid && formBagPickupLocationEdit.collectionAddressLine2.dirty }">
+      <input class="form-control show-error-init" 
+             id="collectionAddressLine2" 
+             name="collectionAddressLine2" 
+             [ngModel]="locationData.location.addressLine2"
+             type="text">
+      <label class="control-label" for="collectionAddressLine2">Address line 2</label>
+    </div>
+    <!--<p class="help-block text-danger" *ngIf="formBagPickupLocationEdit.collectionAddressLine2.invalid">Please enter your address line 2</p>-->
+
+    <div class="form-group" (class)="{ 'has-error' : formBagPickupLocationEdit.collectionAddressTown.invalid && formBagPickupLocationEdit.collectionAddressTown.dirty }">
+      <input class="form-control show-error-init" 
+             id="collectionAddressTown" 
+             name="collectionAddressTown" 
+             [ngModel]="locationData.location.addressTown"
+             required
+             type="text">
+      <label class="control-label" for="collectionAddressTown">Town / City</label>
+    </div>
+    <!--<p class="help-block text-danger" *ngIf="formBagPickupLocationEdit.collectionAddressTown.invalid">Please enter your town / city</p>-->
+
+    <div class="form-group" (class)="{ 'has-error' : formBagPickupLocationEdit.collectionAddressPostcode.invalid && formBagPickupLocationEdit.collectionAddressPostcode.dirty }">
+      <input class="form-control show-error-init" 
+             id="collectionAddressPostcode" 
+             name="collectionAddressPostcode" 
+             [ngModel]="locationData.location.addressPostCode"
+             required
+             type="text"
+             minlength="5" 
+             maxlength="8">
+      <label class="control-label" for="collectionAddressPostcode">Postcode</label>
+    </div>
+    <!--<p class="help-block text-danger" *ngIf="formBagPickupLocationEdit.collectionAddressPostcode.invalid && !formBagPickupLocationEdit.collectionAddressPostcode.error.pattern">Please enter your postcode</p>
+    <p class="help-block text-danger" *ngIf="formBagPickupLocationEdit.collectionAddressPostcode.error.pattern">Please enter a valid postcode</p>-->
+
+    <h6 class="margin-bottom-24">What type of address are we picking up from?</h6>
+    <div class="radio">
+      <input type="radio" 
+             name="collectionType" 
+             id="collectionTypeHotel" 
+             value="2"
+             [ngModel]="locationData.location.type"
+             checked="">
+      <label for="collectionTypeHotel">Hotel</label>
+    </div>
+    <div class="radio">
+      <input type="radio" 
+             name="collectionType" 
+             id="collectionTypeResidential" 
+             value="4" 
+             [ngModel]="locationData.location.type" 
+             checked="">
+      <label for="collectionTypeResidential">Residential</label>
+    </div>
+    <div class="radio">
+      <input type="radio" 
+             name="collectionType" 
+             id="collectionTypeBusiness" 
+             value="3" 
+             [ngModel]="locationData.location.type" 
+             checked="">
+      <label for="collectionTypeBusiness">Business</label>
+    </div>
+    <div class="radio">
+      <input type="radio" 
+             name="collectionType" 
+             id="collectionTypeAirport" 
+             value="1" 
+             [ngModel]="locationData.location.type"
+             checked="">
+      <label for="collectionTypeAirport">Airport</label>
+    </div>
+
+    <!--<div class="form-group margin-top-32">
+      <textarea class="form-control" rows="7" placeholder="Write a note (optional)"></textarea>
+    </div>-->
+
+    <div class="clearfix margin-top-32">
+      <button id="collection-back" type="button" class="btn btn-back btn-lg pull-left" *ngIf="isNewBooking !== 'amend'">
+        <i class="icon">chevron_small_left</i>
+        Go back
+      </button>
+      <button id="add-passenger-back" type="button" class="btn btn-back btn-lg pull-left" *ngIf="isNewBooking === 'amend'" (click)="cancelAmend()">
+        <i class="icon">chevron_small_left</i>Cancel
+      </button>
+      <button id="formBagPickupLocationEdit-submit" type="submit" class="btn btn-accent btn-lg pull-right">
+        <div class="loader-container-btn" *ngIf="showLocationLoader">
+          <div class="loader loader--gray">
+            <svg class="circular" viewBox="25 25 50 50">
+              <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+            </svg>
+          </div>
+        </div>
+        Confirm
+      </button>
+    </div>
+
+    <button class="btn btn-link btn-lg link xs-full-width" type="button" (click)="setLocationEdit(false, true)">
+      Not your address? Search again
+    </button>
+
+  </form>
+</article>

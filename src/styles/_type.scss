@@ -1,0 +1,89 @@
+//
+// Type styles - includes header sizes, general text, lists, webfont import
+// --------------------------------------------------
+
+html { font-size: 62.5% }
+
+// NOTE - after above reset - rem size example
+// 1.4rem = 14px, 1.6rem = 16px, etc...
+
+$h1-type-size: 4.5rem;
+$h2-type-size: 3.6rem;
+$h3-type-size: 2.8rem;
+$h4-type-size: 2rem;
+$h5-type-size: 1.9rem;
+$h6-type-size: 1.6rem;
+
+$body-text-size: 1.6rem;
+$caption: 1.2rem;
+
+$weight-normal: 300;
+$weight-bold: 500;
+
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,500,700);
+$roboto-font: 'Roboto', sans-serif;
+
+
+//import icon font
+@import "icon-font";
+
+
+body {
+  font-size: $body-text-size;
+  font-family: $roboto-font;
+  font-weight: $weight-normal;
+}
+
+p { margin-bottom: $spacing16; }
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 { font-weight: $weight-bold; }
+
+h1 {
+	font-size: $h1-type-size;
+}
+
+h2 {
+	margin-top: $spacing12 * 2;
+	margin-bottom: $spacing16 / 2;
+	font-size: $h2-type-size;
+}
+
+h3 {
+	margin-top: $spacing12 * 2;
+	margin-bottom: $spacing16 / 2;
+	font-size: $h3-type-size;
+
+	.price-holder { font-weight: $weight-normal; }
+}
+
+h4 {
+	margin-top: $spacing12 * 2;
+	margin-bottom: $spacing16;
+	font-size: $h4-type-size;
+}
+
+h5 {
+	margin-top: $spacing12 / 2;
+	margin-bottom: $spacing16;
+	font-size: $h5-type-size;
+
+	.panel-heading .booking-item & { margin-bottom: $spacing16; }
+}
+
+h6 {
+	margin-top: $spacing16 * 2;
+	margin-bottom: 0;
+	font-size: $h6-type-size;
+}
+
+.text-caption { font-size: $caption; }
+
+strong { font-weight: $weight-bold; }
+

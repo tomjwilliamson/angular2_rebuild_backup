@@ -1,0 +1,108 @@
+.text-gray-light { color: $gray-light !important; }
+.text-danger { color: $text-danger !important; }
+.text-primary { color: $brand-primary !important; }
+.text-accent { color: $brand-accent !important; }
+.text-white { color: white !important; }
+
+.no-scroll { overflow-y: hidden; }
+
+.show-on-mobile {
+	@media (min-width: $screen-sm-min) {
+		display: none;
+	}
+}
+
+.pointer { cursor: pointer; }
+
+.margin-top-0 { margin-top: 0 !important; }
+.margin-top-16 { margin-top: $spacing16 !important; }
+.margin-top-24 { margin-top: $spacing12 * 2 !important; }
+.margin-top-32 { margin-top: $spacing16 * 2 !important; }
+
+.margin-bottom-0 { margin-bottom: 0 !important; }
+.margin-bottom-8 { margin-bottom: $spacing16 / 2 !important; }
+.margin-bottom-12 { margin-bottom: $spacing12 !important; }
+.margin-bottom-16 { margin-bottom: $spacing16 !important; }
+.margin-bottom-24 { margin-bottom: $spacing12 * 2 !important; }
+.margin-bottom-32 { margin-bottom: $spacing16 * 2 !important; }
+
+.margin-right-0 { margin-right: 0 !important; }
+
+.weight-normal { font-weight: $weight-normal; }
+
+.xs-full-width {
+	@media (max-width: $screen-xs-max) {
+    width: 100%;
+  }
+}
+
+.media { margin-top: $spacing16; }
+
+.media-left,
+.media > .pull-left {
+	padding-right: $spacing12;
+
+	.icon-x2 { margin-right: $spacing12; }
+}
+
+.media-right,
+.media > .pull-right { padding-left: $spacing12; }
+
+.label {
+	display: inline-block;
+	padding: $spacing16 / 2;
+	border-radius: 8px;
+	font-size: 100%;
+	font-weight: $weight-normal;
+
+	a { text-decoration: underline; }
+}
+
+hr {
+	margin-top: $spacing16 * 2;
+	margin-bottom: $spacing12 * 2;
+	border-top: 2px solid $gray-lighter;
+}
+
+.hr-text {
+
+	&:after {
+		content: '';
+		display: block;
+		height: 1px;
+		background-color: $gray-lighter;
+		margin-top: -$spacing12;
+		margin-left: $spacing16 * 2;
+		margin-right: $spacing16 * 2;
+	}
+
+	span {
+		background-color: white;
+		padding-left: $spacing12;
+		padding-right: $spacing12;
+	}
+}
+
+.partner-ba {
+	font-size: $caption;
+	line-height: 26px;
+	color: $gray-lightest;
+
+	img {
+		position: relative;
+		top: -8px;
+		margin-left: $spacing12 / 2;
+	  width: 139px;
+	}
+
+	@media (min-width: $screen-sm-min) {
+		&.xs-full-width { margin-left: $spacing12 * 2; }
+	}
+}
+
+
+.typeform-widget {
+	width: 100%;
+	height: 500px;
+	margin-top: $spacing12 * 2;
+}

@@ -1,0 +1,44 @@
+<article class="panel panel-default">
+
+  <!--<p class="text-muted" *ngIf="!isUser">Let us know what email address you’d like your booking confirmation sent to. We’ll also need this if we need to contact you about your booking.</p>
+  <p class="text-muted" *ngIf="isUser">We found an account attached to this email address. Please enter your account password to continue.</p>-->
+
+  <form #formEmailCheck="ngForm" id="enterEmail" name="formEmailCheck" *ngIf="!isUser" (submit)="handleSubmitEmailCheck(formEmailCheck.value, $event)" novalidate>
+    <div class="form-group" (class)="{ 'has-error' : formEmailCheck.email.invalid && formEmailCheck.email.dirty }">
+      <input class="form-control" 
+             id="email" 
+             name="email" 
+             type="email"
+             pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"
+             ngModel
+             required>
+      <label class="control-label" for="email">Email address</label>
+    </div>
+    <!--<p class="help-block text-danger" *ngIf="formEmailCheck.email.error.email">Must be a valid email address</p>
+    <p class="help-block text-danger" *ngIf="formEmailCheck.email.invalid && !formEmailCheck.email.error.email && formEmailCheck.email.dirty">Please enter your email address</p>-->
+
+    <button id="formEmailCheck-submit" type="submit" class="btn btn-accent btn-lg btn-block">
+      <div class="loader-container-btn" *ngIf="showEmailLoader">
+        <div class="loader loader--gray">
+          <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+          </svg>
+        </div>
+      </div>
+      Continue
+    </button>
+  </form>
+
+  <div *ngIf="isUser">
+
+    <!--<login-panel data="$ctrl" ng-show="$ctrl.visibleSection === 'login'"></login-panel>
+    <password-reset-panel data="$ctrl" ng-show="$ctrl.visibleSection === 'password-reset'"></password-reset-panel>-->
+
+    <div class="hr-text text-center text-muted margin-top-24 margin-bottom-32">
+      <span>or</span>
+    </div>
+    <button type="button" class="btn btn-primary btn-ghost btn-block" (click)="continueAsGuestClick()">
+      Continue as a guest
+    </button>
+  </div>
+</article>

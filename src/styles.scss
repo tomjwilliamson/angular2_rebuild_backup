@@ -1,0 +1,102 @@
+//
+// Main - used to import scss files
+// make sure to include any new files here
+// --------------------------------------------------
+
+$icon-font-path: './fonts';
+
+// custom overrides
+@import
+'./styles/variables';
+
+
+// Core variables and mixins
+@import
+'../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/variables',
+'../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/mixins';
+
+// Reset and dependencies
+@import
+'../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/normalize',
+'../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/print';
+
+// Core CSS
+@import
+'../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/scaffolding',
+'../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/type',
+'../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/code',
+'../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/grid',
+'../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/tables',
+'../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/forms',
+'../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/buttons';
+
+// Components
+@import
+'../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/component-animations',
+'../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/dropdowns',
+'../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/button-groups',
+'../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/input-groups',
+'../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/navs',
+'../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/navbar',
+'../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/breadcrumbs',
+'../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/pagination',
+'../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/pager',
+'../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/labels',
+'../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/badges',
+'../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/jumbotron',
+'../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/thumbnails',
+'../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/alerts',
+'../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/progress-bars',
+'../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/media',
+'../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/list-group',
+'../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/panels',
+'../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/responsive-embed',
+'../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/wells',
+'../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/close';
+
+// Components w/ JavaScript
+@import
+'../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/modals',
+'../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/tooltip',
+'../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/popovers',
+'../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/carousel';
+
+// Utility classes
+@import
+'../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/utilities',
+'../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/responsive-utilities';
+
+
+// animate.css includes
+// path '../bower_components/animatewithsass/''
+//@import
+//'animate.scss';
+// endbower
+
+// Start booking form styles
+// Custom/updated site elemnts
+
+@import
+'./styles/icon-font',
+'./styles/type',
+'./styles/layout',
+'./styles/navigation',
+'./styles/panels',
+'./styles/buttons',
+'./styles/forms',
+'./styles/components',
+'./styles/overlay',
+'./styles/animations',
+'./styles/alerts',
+'./styles/browser_hacks';
+
+//Pages styles
+/*@import
+'splash',
+'home',
+'booking',
+'how-it-works';*/
+
+//Utilitiy classes/overrides
+@import
+'./styles/utilities';

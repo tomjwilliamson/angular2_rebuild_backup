@@ -1,0 +1,63 @@
+<article class="panel panel-default">
+  <form #formFlight="ngForm" name="formFlight" id="formFlight" (ngSubmit)="handleSubmit(formFlight.value, formFlight.valid, $event)" novalidate>
+
+    <div class="form-group">
+      <input class="form-control no-label" 
+            name="FlightNumber" 
+            id="FlightNumber" 
+            placeholder="Flight number e.g. BA123"
+            type="text"
+            required
+            ngModel>
+    </div>
+    <!--<p class="help-block text-danger">Flight number should start with BA</p>-->
+    <!--<p class="help-block text-danger" ng-show="$ctrl.wetleaseError">Sorry we can only service British Airways operated flights for now</p>-->
+
+    <div class="form-group date-inputs clearfix">
+      <input class="form-control date-inputs__day no-label pull-left" 
+            name="DepartureDate" 
+            id="DepartureDate" 
+            placeholder="DD" 
+            type="number" 
+            maxlength="2" 
+            required
+            ngModel>
+      <input class="form-control date-inputs__month no-label pull-left" 
+            name="DepartureMonth" 
+            id="DepartureMonth" 
+            placeholder="MM" 
+            type="number" 
+            maxlength="2" 
+            required
+            ngModel>
+      <input class="form-control date-inputs__year no-label pull-left" 
+            name="DepartureYear" 
+            id="DepartureYear" 
+            placeholder="YYYY" 
+            type="number"
+            minlength="4"
+            required
+            ngModel>
+      <div class="date-inputs__separator"></div>
+    </div>
+    <!--<p class="help-block text-danger">Flight departure time needs to be at least 19 hours from now</p>
+    <p class="help-block text-danger">Flight departure date needs to be within 5 years from now</p>
+    <p class="help-block text-danger"></p>-->
+
+    <!--<p>{{ flightData[dataLength]?.flightStatusDetails[0].flightNumber }}</p>-->
+
+    <div class="clearfix">
+      <button id="formFlight-submit" type="submit" class="btn btn-accent btn-lg xs-full-width pull-right">
+        <div class="loader-container-btn" *ngIf="isLoading">
+          <div class="loader loader--gray">
+            <svg class="circular" viewBox="25 25 50 50">
+              <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+            </svg>
+          </div>
+        </div>
+        Find my flight
+      </button>
+    </div>
+
+  </form>
+</article>

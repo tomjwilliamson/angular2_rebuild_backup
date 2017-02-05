@@ -1,0 +1,255 @@
+::-webkit-input-placeholder { color: $gray-light; }
+::-moz-placeholder { color: $gray-light; }
+:-moz-placeholder { color: $gray-light; }
+:-ms-input-placeholder { color: $gray-light; }
+
+select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #000;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance:textfield;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+  -webkit-text-fill-color: $gray-darker;
+}
+
+.row--form {
+  margin-left: -$spacing16 / 2;
+  margin-right: -$spacing16 / 2;
+
+  [class^="col-"] {
+    padding-left: $spacing16 / 2;
+    padding-right: $spacing16 / 2;
+  }
+}
+
+.form-group {
+  position: relative;
+  background-color: white;
+  margin-bottom: $spacing16;
+  border: 1px solid $gray-lightest;
+  border-radius: $border-radius-base;
+  transition: $transition-default;
+
+  &.is-focused {
+    border-color: $brand-primary;
+
+    .control-label { color: $brand-primary; }
+  }
+  &.has-error,
+  &.has-error.is-focused {
+    border-color: $brand-danger;
+
+    .control-label { color: $gray-light; }
+  }
+
+  &.with-select:before {
+    @extend .icon;
+
+    content: "chevron_down";
+    position: absolute;
+    right: $spacing12;
+    bottom: 19px;
+    color: $gray;
+  }
+
+  &.with-icon {
+    position: relative;
+
+    .icon {
+      position: absolute;
+      top: 20px;
+      left: 8px;
+      color: $gray;
+    }
+
+    label,
+    input,
+    select {
+      width: calc(100% - 28px);
+      margin-left: 28px;
+    }
+  }
+
+  .control-label  ~ .date-inputs__separator { top: $spacing16 * 2; }
+}
+
+.control-label {
+  position: absolute;
+  top: 32px;
+  left: $spacing12;
+  color: $gray-light;
+  font-weight: $weight-normal;
+  transition: $transition-default;
+  transform-origin: 0 0;
+  transform: translate3d(0, -50%, 0);
+  filter: blur(0);
+  pointer-events: none;
+
+  .ng-dirty + &,
+  .ng-not-empty + &,
+  input:focus + &,
+  textarea:focus + &,
+  &--fixed {
+    transform: translate3d(0, -20px, 0) scale(0.75, 0.75);
+  }
+
+  .no-label.ng-dirty + &,
+  .no-label.ng-not-empty + &,
+  .no-label:focus + & {
+      display: none;
+    }
+}
+
+.form-control {
+  background: none;
+  height: 64px;
+  padding: $spacing16 * 2 $spacing12 $spacing12;
+  font-size: $body-text-size;
+  color: $gray-darker;
+  border: none;
+
+  &,
+  &:focus,
+  .has-error &,
+  .has-error &:focus { box-shadow: none; }
+
+  &.no-label { padding-top: $spacing12; }
+}
+
+select.form-control {
+  position: relative;
+  appearance: none;
+  background-color: transparent !important;
+}
+
+.radio,
+.checkbox {
+  margin-top: $spacing16;
+  margin-bottom: $spacing16;
+
+  & + & {
+    margin-top: $spacing16;
+  }
+}
+
+.radio,
+.checkbox {
+
+  label {
+    position: relative;
+    min-height: 40px;
+    padding-top: 8px;
+    padding-left: 52px;
+    color: $gray-light;
+    font-size: $body-text-size;
+    font-weight: $weight-normal;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 1px;
+      left: 1px;
+      width: 38px;
+      height: 38px;
+      box-shadow: 0 0 0 1px $gray-lightest;
+      transition: $transition-default;
+    }
+  }
+
+  input,
+  textarea {
+    opacity: 0;
+    z-index: -1;
+
+    &:checked + label:before {
+      background-color: $brand-primary;
+      box-shadow: 0 0 0 1px $brand-primary;
+    }
+  }
+}
+
+.radio label:before {
+  border: 8px solid white;
+  border-radius: 50%;
+}
+
+.checkbox {
+
+  label:before {
+    @extend .icon;
+
+    color: white;
+    line-height: 38px;
+    text-align: center;
+    border-radius: $border-radius-base * 2;
+  }
+
+  input:checked + label:before {
+    content: 'tick';
+  }
+}
+
+
+.date-inputs {
+
+  &__day { width: $spacing12 * 4; }
+
+  &__month {
+    width: 60px;
+    padding-left: $spacing16;
+    padding-right: $spacing16;
+  }
+
+  &__year {
+    width: calc(100% - 48px - 60px);
+    padding-left: $spacing16;
+    padding-right: $spacing16;
+  }
+
+  &__separator {
+    position: absolute;
+    top: $spacing12;
+    bottom: $spacing12;
+
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background-color: $gray-lightest;
+    }
+
+    &:before { left: $spacing12 * 4; }
+
+    &:after { left: $spacing12 * 4 + $spacing16 * 4; }
+  }
+
+  &--noday {
+
+    .date-inputs__year { width: calc(100% - 60px); }
+
+    .date-inputs__separator {
+      &:before { left: $spacing12 * 5; }
+
+      &:after { display: none; }
+    }
+  }
+}
+
+.help-block {
+  margin-top: -$spacing12;
+  margin-bottom: $spacing16;
+  font-size: $caption;
+}

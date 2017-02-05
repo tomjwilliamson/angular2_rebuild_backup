@@ -1,0 +1,9 @@
+export const API_PATH = 'http://devapi.portr.com/';
+export const GET_ALL_AIRPORTS = 'api/Location/GetAllAirports';
+export const GET_ALL_POSTCODES = 'api/Price/GetAllPostcodes';
+export const GET_GOOGLE_LOCATION = 'api/Location/GetGoogleLocation';
+export const SAVE_GOOGLE_LOCATION = 'api/Location/SaveGoogleLocation';
+export const VERIFY_USER = 'api/User/VerifyCustomer';
+export const TOKEN = 'token';
+export const LOGIN = 'api/user/GetCurrentUser';
+export const REGISTER = 'api/User/AddNewUser';
